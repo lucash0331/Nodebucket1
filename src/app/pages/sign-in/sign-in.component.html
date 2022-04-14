@@ -1,0 +1,31 @@
+<!--
+ Title: Nodebucket
+Author: Lucas Hoffman
+Date: April 14, 2022
+Description: Nodebucket
+-->
+
+<div fxLayout="column">
+  <mat-card fxFlex class="mat-elevation-z8 signin-container">
+    <mat-card-title>
+      <img height="80px" width="auto" src="../../../assets/bucket-blue.svg" />
+      <br /><br />
+      Nodebucket 
+    </mat-card-title>
+    <br />
+    <mat-card-subtitle *ngIf="error"> {{ error }} </mat-card-subtitle>
+    <br />
+    <div class="form-center">
+      <form [formGroup]="form" (ngSubmit)="login(); form.reset()" class="signin-form">
+        <mat-card-content>
+          <mat-form-field>
+            <input matInput [formControl]="form.controls['empId']" placeholder="User ID" />
+          </mat-form-field>
+        </mat-card-content>
+        <mat-card-actions fxLayoutAlign="center center">
+          <button class="submit-button" type="submit" fxFlex mat-stroked-button color="primary" [disabled]="!form.valid">Sign-in</button>
+        </mat-card-actions>
+      </form>
+    </div>
+  </mat-card>
+</div>

@@ -1,0 +1,135 @@
+<!--
+ Title: Nodebucket
+Author: Lucas Hoffman
+Date: April 14, 2022
+Description: Nodebucket
+-->
+
+<br />
+<br />
+
+<div fxLayout="column" class="main-welcome">
+  <div fxFlex>
+    <h1 class="title">
+      <b> Nodebucket Application</b> <br />
+      <span class="subtitle"> </span>
+    </h1>
+  </div>
+
+  <div fxFlex>
+    <div class="task-container" fxLayout="column" fxLayoutAlign="center center">
+      <button mat-stroked-button color="primary" fxFlex style="max-width: 33%" (click)="openCreateTaskDialog()">Create New Task</button>
+    </div>
+  </div>
+  <br />
+  <br />
+  <!-- PrimeNG Toast for alert popups -->
+  <p-toast position="top-right"></p-toast>
+
+  <!-- Start of div for columns -->
+  <div fxFlex>
+    <!-- PrimeNG Confirm Dialog tag -->
+    <p-confirmDialog header="Confirmation" icon="pi pi-exclamation-triangle"></p-confirmDialog>
+    <div fxLayout="row" fxLayoutGap="15px" class="task-container">
+      <!-- Start of 'todo' column -->
+      <div fxFlex>
+        <mat-card class="mat-elevation-z0">
+          <mat-card-title>ToDo</mat-card-title>
+          <mat-card-content>
+            <div
+              class="task-column"
+              cdkDropList
+              #todoList="cdkDropList"
+              [cdkDropListData]="todo"
+              [cdkDropListConnectedTo]="[doingList, doneList]"
+              (cdkDropListDropped)="drop($event)"
+            >
+              <div *ngFor="let item of todo" cdkDrag>
+                <mat-card class="mat-elevation-z0 task-card">
+                  <mat-card-content>
+                    <div fxLayout="row">
+                      <div fxFlex>
+                        {{ item.taskName }}
+                      </div>
+                      <div fxFlex fxLayoutAlign="end">
+                        <button mat-icon-button (click)="deleteTask(item._id)">
+                          <mat-icon color="accent">delete</mat-icon>
+                        </button>
+                      </div>
+                    </div>
+                  </mat-card-content>
+                </mat-card>
+              </div>
+            </div>
+          </mat-card-content>
+        </mat-card>
+      </div>
+      <!-- Start of 'doing' column -->
+      <div fxFlex>
+        <mat-card class="mat-elevation-z0">
+          <mat-card-title>In Progress</mat-card-title>
+          <mat-card-content>
+            <div
+              class="task-column"
+              cdkDropList
+              #doingList="cdkDropList"
+              [cdkDropListData]="doing"
+              [cdkDropListConnectedTo]="[todoList, doneList]"
+              (cdkDropListDropped)="drop($event)"
+            >
+              <div *ngFor="let item of doing" cdkDrag>
+                <mat-card class="mat-elevation-z0 task-card">
+                  <mat-card-content>
+                    <div fxLayout="row">
+                      <div fxFlex>
+                        {{ item.taskName }}
+                      </div>
+                      <div fxFlex fxLayoutAlign="end">
+                        <button mat-icon-button (click)="deleteTask(item._id)">
+                          <mat-icon color="accent">delete</mat-icon>
+                        </button>
+                      </div>
+                    </div>
+                  </mat-card-content>
+                </mat-card>
+              </div>
+            </div>
+          </mat-card-content>
+        </mat-card>
+      </div>
+      <!-- Start of 'done' column -->
+      <div fxFlex>
+        <mat-card class="mat-elevation-z0">
+          <mat-card-title>Done</mat-card-title>
+          <mat-card-content>
+            <div
+              class="task-column"
+              cdkDropList
+              #doneList="cdkDropList"
+              [cdkDropListData]="done"
+              [cdkDropListConnectedTo]="[todoList, doingList]"
+              (cdkDropListDropped)="drop($event)"
+            >
+              <div *ngFor="let item of done" cdkDrag>
+                <mat-card class="mat-elevation-z0 task-card">
+                  <mat-card-content>
+                    <div fxLayout="row">
+                      <div fxFlex>
+                        {{ item.taskName }}
+                      </div>
+                      <div fxFlex fxLayoutAlign="end">
+                        <button mat-icon-button (click)="deleteTask(item._id)">
+                          <mat-icon color="accent">delete</mat-icon>
+                        </button>
+                      </div>
+                    </div>
+                  </mat-card-content>
+                </mat-card>
+              </div>
+            </div>
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </div>
+  </div>
+</div>

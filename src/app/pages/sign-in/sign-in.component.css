@@ -1,0 +1,21 @@
+.signin-container {
+  width: 50%;
+  text-align: center;
+  margin: 5% auto;
+  border: 2px solid #86c232;
+}
+
+mat-form-field {
+  width: 50%;
+}
+
+.submit-button {
+  display: block;
+  margin-left: 25%;
+  margin-right: 25%;
+  max-width: 50%;
+}
+
+mat-card-subtitle {
+  color: red;
+}
