@@ -25,7 +25,7 @@ const routes: Routes = [
       {
         path: "",
         component: HomeComponent,
-       // canActivate: [SignInGuard],
+        canActivate: [SignInGuard],
       },
       {
         path: "contact",
@@ -35,7 +35,7 @@ const routes: Routes = [
       {
         path: "about",
         component: AboutUsComponent,
-       // canActivate: [SignInGuard],
+        canActivate: [SignInGuard],
       },
     ],
   },
