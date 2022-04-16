@@ -34,7 +34,7 @@ router.get("/:empId", async (req, res) => {
 // Find all tasks API
 router.get("/:empId/tasks", async (req, res) => {
   try {
-    Employee.findOne({ empId: req.params.empId }, "empId todo.taskName done.taskName doing.taskName", function (err, employee) {
+    Employee.findOne({ empId: req.params.empId }, "empId toDo.taskName done.taskName doing.taskName", function (err, employee) {
       if (err) {
         res.status(500).send({
           message: "Internal server error: " + err.message,
@@ -63,7 +63,7 @@ router.post("/:empId/tasks", async (req, res) => {
           taskName: req.body.taskName,
           //status: "todo",
         };
-        employee.todo.push(newItem);
+        employee.toDo.push(newItem);
         employee.save(function (err, updatedEmployee) {
           if (err) {
             res.status(500).send({
@@ -93,7 +93,7 @@ router.put("/:empId/tasks", async (req, res) => {
       } else {
         employee.set({
           // status, req.body.task?
-          todo: req.body.todo,
+          toDo: req.body.toDo,
           doing: req.body.doing,
           done: req.body.done,
         });
@@ -126,12 +126,12 @@ router.delete("/:empId/tasks/:taskId", async (req, res) => {
       } else {
         //console.log(employee.task._id);
         // employee.task.find may not be correct (maybe task.status.find?)
-        const todoItem = employee.todo.find((item) => item._id.toString() === req.params.taskId);
+        const todoItem = employee.toDo.find((item) => item._id.toString() === req.params.taskId);
         const doingItem = employee.doing.find((item) => item._id.toString() === req.params.taskId);
         const doneItem = employee.done.find((item) => item._id.toString() === req.params.taskId);
 
         if (todoItem) {
-          employee.todo.id(todoItem._id).remove();
+          employee.toDo.id(todoItem._id).remove();
           employee.save(function (err, updatedTodoItemEmployee) {
             if (err) {
               console.log(err);
