@@ -14,7 +14,7 @@ let employeeSchema = new Schema(
     empId: { type: String, unique: true, dropDups: true },
     firstName: { type: String },
     lastName: { type: String },
-    todo: [ItemDocument],
+    toDo: [ItemDocument],
     doing: [ItemDocument],
     done: [ItemDocument],
   },
