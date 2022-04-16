@@ -11,8 +11,9 @@ const Schema = mongoose.Schema;
 let itemSchema = new Schema({
   taskName: { type: String },
   taskId: { type: String },
-  priority: { type: Boolean },
+  priority: { type: String },
   dueDate: { type: Date },
 });
 
 module.exports = itemSchema;
+
