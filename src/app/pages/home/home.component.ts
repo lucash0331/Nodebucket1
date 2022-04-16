@@ -24,7 +24,7 @@ import { MessageService } from "primeng/api";
 export class HomeComponent implements OnInit {
   employee: Employee;
   task: Item[];
-  todo: Item[];
+  toDo: Item[];
   doing: Item[];
   done: Item[];
   empId: number;
@@ -46,7 +46,7 @@ export class HomeComponent implements OnInit {
         console.log(err);
       },
       () => {
-        this.todo = this.employee.todo;
+        this.toDo = this.employee.toDo;
         this.doing = this.employee.doing;
         this.done = this.employee.done;
       }
@@ -71,7 +71,7 @@ export class HomeComponent implements OnInit {
             console.log(err);
           },
           () => {
-            this.todo = this.employee.todo;
+            this.toDo = this.employee.toDo;
             this.doing = this.employee.doing;
             this.done = this.employee.done;
             // PrimeNG Toast message sender
@@ -86,16 +86,16 @@ export class HomeComponent implements OnInit {
   drop(event: CdkDragDrop<any[]>) {
     if (event.previousContainer === event.container) {
       moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
-      this.updateTaskList(this.empId, this.todo, this.doing, this.done);
+      this.updateTaskList(this.empId, this.toDo, this.doing, this.done);
     } else {
       transferArrayItem(event.previousContainer.data, event.container.data, event.previousIndex, event.currentIndex);
-      this.updateTaskList(this.empId, this.todo, this.doing, this.done);
+      this.updateTaskList(this.empId, this.toDo, this.doing, this.done);
     }
   }
 
   // Update task function
-  updateTaskList(empId: number, todo: Item[], doing: Item[], done: Item[]): void {
-    this.taskService.updateTask(empId, todo, doing, done).subscribe(
+  updateTaskList(empId: number, toDo: Item[], doing: Item[], done: Item[]): void {
+    this.taskService.updateTask(empId, toDo, doing, done).subscribe(
       (res) => {
         this.employee = res.data;
       },
@@ -103,7 +103,7 @@ export class HomeComponent implements OnInit {
         console.log(err);
       },
       () => {
-        this.todo = this.employee.todo;
+        this.toDo = this.employee.toDo;
         this.doing = this.employee.doing;
         this.done = this.employee.done;
         // PrimeNG Toast message sender
@@ -127,7 +127,7 @@ export class HomeComponent implements OnInit {
               console.log(err);
             },
             () => {
-              this.todo = this.employee.todo;
+              this.toDo = this.employee.toDo;
               this.doing = this.employee.doing;
               this.done = this.employee.done;
               // PrimeNG Toast message sender
