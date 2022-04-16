@@ -9,7 +9,7 @@ import { Item } from "./item.interface";
 
 export interface Employee {
   empId: string;
-  todo: Item[];
+  toDo: Item[];
   doing: Item[];
   done: Item[];
   task: Item[];
