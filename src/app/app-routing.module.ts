@@ -30,7 +30,7 @@ const routes: Routes = [
       {
         path: "contact",
         component: ContactComponent,
-      //  canActivate: [SignInGuard],
+        canActivate: [SignInGuard],
       },
       {
         path: "about",
